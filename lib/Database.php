@@ -1,11 +1,10 @@
 <?php
 
-
-class Database extends PDO{
+class Database extends Config{
     public static $connection;
     private function __construct($dsn, $user, $password){
         try{
-            parent::__construct($dsn, $user, $password);
+            new PDO($dsn, $user, $password);
             echo "connected";
         }catch(PDOException $e){
             echo "not connected";
@@ -25,9 +24,14 @@ class Database extends PDO{
 
     //basic query
 
-    public function select($query){
-        $result = self::$connection -> prepare($query);
-        
+    public function select($query,$data = array()){
+        $stmt = self::$connection -> prepare($query);
+        if(!empty($data)){
+            $result = $stmt->execute($data);
+        }else{
+           $result = $stmt->execute();
+        }
+        return $result->fetchAll();
     }
 
 }
