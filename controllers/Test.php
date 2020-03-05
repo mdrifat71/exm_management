@@ -2,7 +2,7 @@
 
 class Test extends Controller{
     public function __construct(){
-        //parent::__construct();
+        parent::__construct();
     }
 
     public function default(){
@@ -12,6 +12,6 @@ class Test extends Controller{
     public function all(){
         $model = new Load();
         $model = $model->model('Test');
-        
+        $result = $model->selectAll();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 include_once 'lib/Config.php';
 include_once 'lib/Controller.php';
-include_once '/lib/Model.php';
+include_once 'lib/Model.php';
 include_once 'lib/Database.php';
 include_once 'lib/Load.php';
 include_once 'lib/Router.php';

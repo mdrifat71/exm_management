@@ -18,6 +18,9 @@ class Database extends Config{
             return self::$connection;
         }else{
             self::$connection = new Database($dsn, $user, $password);
+            return self::$connection;
+            echo "connected";
+            exit();
         }
     }
 
@@ -25,11 +28,11 @@ class Database extends Config{
     //basic query
 
     public function select($query,$data = array()){
-        $stmt = self::$connection -> prepare($query);
+        $stmt = self::$connection->prepare($query);
         if(!empty($data)){
             $result = $stmt->execute($data);
         }else{
-           $result = $stmt->execute();
+            $result = $stmt->execute();
         }
         return $result->fetchAll();
     }

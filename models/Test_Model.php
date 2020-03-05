@@ -1,9 +1,8 @@
 <?php
-namespace lib\Model;
-class Test extends Model{
+
+class Test_Model extends Model{
     public function __construct(){
         parent::__construct();
     }
 
-    
 }
