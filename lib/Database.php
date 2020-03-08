@@ -2,26 +2,16 @@
 
 class Database extends Config{
     public static $connection;
-    private function __construct($dsn, $user, $password){
-        try{
-            new PDO($dsn, $user, $password);
-            echo "connected";
-        }catch(PDOException $e){
-            echo "not connected";
-            print_r($e);
-            exit();
-        }
-    }
 
     public static function connect($dsn, $user, $password){
-        if(!self::$connection){
-            return self::$connection;
-        }else{
-            self::$connection = new Database($dsn, $user, $password);
-            return self::$connection;
-            echo "connected";
-            exit();
-        }
+       try{
+           self::$connection = new PDO($dsn, $user, $password);
+           self::$connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+           self::$connection->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
+       }catch(PDOException $e){
+            print_r($e);
+       }
+        
     }
 
 
@@ -30,11 +20,22 @@ class Database extends Config{
     public function select($query,$data = array()){
         $stmt = self::$connection->prepare($query);
         if(!empty($data)){
-            $result = $stmt->execute($data);
+             $stmt->execute($data);
         }else{
-            $result = $stmt->execute();
+             $stmt->execute();
         }
-        return $result->fetchAll();
+        return $result = $stmt->fetchAll();
+    }
+
+    public function insert($sql,$data = NULL){
+        $stmt = self::$connection->prepare($sql);
+        if($data != NULL){
+            print_r($data);
+            return $stmt->execute($data);
+        }else{
+            return  $stmt->execute();
+        }
+        
     }
 
 }

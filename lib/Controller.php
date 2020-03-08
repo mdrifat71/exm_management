@@ -2,6 +2,6 @@
 
 class Controller extends Config{
     public function __construct(){
-        include_once "$this->root/lib/Load.php";
+        include_once Config::$root."/lib/Load.php";
     }
 }

@@ -4,11 +4,11 @@ class Load extends Config{
     
     public function model($model){
         $model = $model."_Model";
-        include_once "$this->root/models/$model.php";   
+        include_once Config::$root."/models/$model.php";   
         return new $model;  
     }
 
-    public  function load_view($view,$data=array()){
-        include_once "$this->root/views/$view.php";
+    public  function view($view,$data=array()){
+        include_once Config::$root."/views/$view.php";
     }
 }

@@ -10,8 +10,25 @@ class Test extends Controller{
     }
 
     public function all(){
-        $model = new Load();
-        $model = $model->model('Test');
-        $result = $model->selectAll();
+        $load = new Load();
+        $model = $load->model('Test');
+        $data = $model->selectAll();
+        $load->view('all_test', $data);
+       
+    }
+
+    public function add_test(){
+        $load = new Load();
+        if(empty($_POST)){
+            $load->view('add_test');
+        }else{
+            $model = $load->model('Test');
+            $test_name = $_POST['test_name'];
+            if($model->insert($test_name)){
+                echo "success";
+            }else{
+                echo "failed";
+            }
+        }
     }
 }
