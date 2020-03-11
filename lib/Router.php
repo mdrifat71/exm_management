@@ -16,7 +16,7 @@ class Router extends Config{
                     if(method_exists($this->controller,$url[1])){
                         $this->controller->{$url[1]}($data);   
                     }else{
-                        echo "not exitst";
+                        $this->controller->default();
                     }
                 }else{
                     $this->controller->default();

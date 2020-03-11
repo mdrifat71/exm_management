@@ -9,7 +9,9 @@ class Database extends Config{
            self::$connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
            self::$connection->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
        }catch(PDOException $e){
+            echo "<pre>";
             print_r($e);
+            echo "</pre>";
        }
         
     }

@@ -7,11 +7,20 @@
 </head>
 <body>
     <form action="<?php echo self::$base."/Question/add" ?>" method = "post">
+        
+        <?php
+        if (!isset($_GET['test']) and empty($_GET['test'])): ?>
         <select name="test" id="">
-        <?php foreach ($data as $item):?>
-            <option value="<?php echo $item['test_id']?>"><?php echo $item['test_name']?></option>
-        <?php endforeach ;?>
+        <?php
+            foreach ($data as $item):?>
+                <option value="<?php echo $item['test_id']?>"><?php echo $item['test_name']?></option>
+        <?php 
+            endforeach ;
+        ?>
         </select><br>
+
+        <?php endif;?>
+        
         Question :<br>
         <input style="width:200px" type="text" name = "question"><br><br>
         <input type="text" name = "opt1"><br>

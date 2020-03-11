@@ -9,7 +9,7 @@
    
     <ul>
        <?php foreach($data as $item):?>
-            <li><a href="<?php echo self::$base.'/exm/'.$item['test_id'] ; ?>"><?php echo $item['test_name']?></a></li>
+            <li><a href="<?php echo self::$base.'/exam/take/'.$item['test_id'] ; ?>"><?php echo $item['test_name']?></a></li>
         <?php endforeach?>
     </ul>
 </body>
